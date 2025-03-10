@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi API Simple</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+        .container {
+            max-width: 600px;
+            margin: auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #333;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            margin: 5px 0;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Bienvenido a mi API</h1>
+        <p>Aquí están los nombres que la API devuelve:</p>
+        <ul id="nombres-lista"></ul>
+    </div>
+
+    <script>
+        fetch('http://127.0.0.1:8000/nombres')
+            .then(response => response.json())
+            .then(data => {
+                const lista = document.getElementById('nombres-lista');
+                data.forEach(nombre => {
+                    const li = document.createElement('li');
+                    li.textContent = nombre;
+                    lista.appendChild(li);
+                });
+            });
+    </script>
+
+</body>
+</html>
